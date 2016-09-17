@@ -57,4 +57,4 @@ install_manifest.txt
 *.un~
 
 ### YCM
-*.pyc
+.ycm*
