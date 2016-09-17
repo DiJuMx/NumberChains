@@ -1,0 +1,60 @@
+build/
+bin/
+
+### C
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Compiled Object Files
+*.slo
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Fortran modules
+*.mod
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Compiled Static Libraries
+*.lai
+
+# Shared Objects
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+
+### CMake
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+### VIM
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+
+### YCM
+*.pyc
