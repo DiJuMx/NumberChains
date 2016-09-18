@@ -62,7 +62,6 @@ void convertToName(long long value, int useAnd, char * buffer)
 
         t = (prefix % 100) / 10;
         u = prefix % 10;
-        printf("%d, %d, h: %d, t: %d, u: %d\n", prefix, nGroups, h, t, u);
 
         if (useAnd){
             if (h > 0 && ((prefix % 100) > 0)) {
@@ -122,7 +121,8 @@ int main(int argc, char * argv[])
     int countAnd = 0;
     char buffer[1024];
     int len = 0;
-     
+
+    long long newTarget = 0;
 
     if (argc == 1) {
         fputs("Not enough arguments\n", stderr);
@@ -133,18 +133,38 @@ int main(int argc, char * argv[])
     }
 
     target = extractTarget(argv[1]);
+    newTarget = target;
     if (target < 0){
         fputs("Error processing target. Negatives and non-digits not allowed", stderr);
         return -1;
     }
 
     if ( argc == 3 ){
+        switch(*argv[2]){
+            case '1':
+            case 'y':
+            case 'Y':
+            case 't':
+            case 'T':
+                countAnd = 1;
+                break;
+            default:
+                countAnd = 0;
+        }
+    }
 
-    } 
-
-    convertToName(target, countAnd, buffer);
-
-    printf("Number: %lld (%s), Length: %d\n", target, buffer, countLetters(buffer));
+    len = 1;
+    while ( newTarget != 4 ) {
+        convertToName(newTarget, countAnd, buffer);
+        printf("%3d: %9lld =>", len, newTarget);
+        newTarget = countLetters(buffer);
+        printf("%5lld letters \"%s\"\n", newTarget, buffer);
+        len++;
+    }
+    convertToName(newTarget, countAnd, buffer);
+    printf("%3d: %9lld =>", len, newTarget);
+    newTarget = countLetters(buffer);
+    printf("%5lld letters \"%s\"\n", newTarget, buffer);
 
     return 0;
 }
